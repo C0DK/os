@@ -1,0 +1,56 @@
+version: "3"
+
+
+tasks:
+  default:
+    aliases: [help]
+    desc: Prints help message and list all
+    cmds:
+      - task -l
+    silent: true
+  iso:
+    desc: Creates an iso for installing nix
+    cmds:
+      - nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=iso.nix
+  isoplain:
+    desc: Creates an iso for installing nix
+    cmds:
+      - nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=iso_plain.nix
+
+  sync:
+    desc: Updates system based on configs
+    cmds:
+      - task: format
+      - sudo nixos-rebuild switch
+      - hyprctl reload
+
+  updateFirmware:
+    desc: Updates framework laptop firmware
+    cmds:
+      - sudo fwupdmgr update
+
+  upgrade:
+    desc: Upgrades all packages and the system (not the NixOsVersion)
+    cmds:
+     - sudo nix-channel --update
+     - sudo nixos-rebuild switch --upgrade
+  format:
+    aliases: [fmt]
+    desc: Autoformats all nix files
+    cmds:
+      - nixfmt .
+
+
+  setup:
+    desc: Initalizes the machine based on this repo
+    cmds:
+     - sudo mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.backup
+     - sudo cp configuration.nix /etc/nixos/
+     - sudo chown root:root /etc/nixos/configuration.nix
+
+  todos:
+    desc: Get list of todos
+    cmds:
+    # TODO: convert to Nushell
+    - grep 'TODO' -r -n --exclude-dir={node_modules,.git,lib} --exclude={"*bundle.js","*.map","*.min.js","*.csv",todos.txt} .
+
