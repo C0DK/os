@@ -10,10 +10,14 @@
 
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, }: 
+  outputs = { self, nixpkgs, ...} @ inputs: 
   let
+    inherit (self) outputs;
     system = "x86_64-linux";
     hostname = "canix";
     user = "cabang";
