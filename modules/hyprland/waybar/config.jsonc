@@ -1,0 +1,110 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    //"height": 5, // Waybar height (to be removed for auto height)
+    //"width": 800, // Waybar width
+    "spacing": 10, // Gaps between modules
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "privacy",
+        "hyprland/language",
+        "pulseaudio",
+        "cpu",
+        "memory",
+        "network",
+        "custom/external-ip",
+        "tray",
+        "battery"
+    ],
+    // TODO: fix broken language on english.
+    "hyprland/workspaces": {
+        "format": "{icon} ",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "󰈹",
+            "4": "",
+            "5": "",
+            "default": ""
+        }
+    },
+    "cpu": {
+        "format": "{percentage}% "
+    },
+    "memory": {
+        "format": "{percentage}% "
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "interval": 1,
+        "format": "{:%Y-%m-%dT%H:%M:%OS%z}"
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 40,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰂇 ",
+        "format-plugged": "{capacity}% 󰂅 ",
+        "format-alt": "{time} {icon} ",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ]
+    },
+    "custom/external-ip": {
+        "exec": "curl -s ifconfig.me",
+		"interval": 30
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-ethernet": "Wired  ",
+        "tooltip-format": "{ifname} via {gwaddr}  ",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected 󱚼 ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} ",
+        "format-bluetooth": "{volume}% {icon} ",
+        "format-bluetooth-muted": "󰝟 {icon} ",
+        "format-muted": "󰝟 ",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [
+                " ",
+                " ",
+                " "
+            ]
+        },
+        "on-click": "pavucontrol"
+    }
+}
