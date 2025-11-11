@@ -21,10 +21,34 @@
     nixOsVersion = "25.05";
   in
   {
+    modules = [
+        ./main.nix
+
+        ./modules/nushell/default.nix
+        ./modules/yubikey.nix
+        ./modules/socials.nix
+        ./modules/nix-alien.nix
+        ./modules/gpg.nix
+        ./modules/git/default.nix
+
+        ./modules/firefox.nix
+
+        ./modules/hyprland/main.nix
+
+        ./modules/bluetooth.nix
+        ./modules/audio.nix
+
+        ./modules/coding/core.nix
+        ./modules/coding/dotnet.nix
+        ./modules/coding/js.nix
+        ./modules/coding/python.nix
+        ./modules/coding/rust.nix
+        ./modules/coding/hugo.nix
+      ];
 
     nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit hostname;  inherit user; };   
+      specialArgs = { inherit hostname;  inherit user; inherit nixOsVersion; };   
 
       modules = [
         home-manager.nixosModules.home-manager 
