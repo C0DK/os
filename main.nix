@@ -2,9 +2,16 @@
   config,
   pkgs,
   lib,
+  user,
+  nixOsVersion,
   ...
 }:
 {
+
+  home-manager.users.${user} = {
+    # The home.stateVersion option does not have a default and must be set
+    home.stateVersion = nixOsVersion;
+  };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 

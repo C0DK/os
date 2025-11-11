@@ -12,22 +12,25 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, ...} @ inputs: 
+  outputs = { self, home-manager, nixpkgs, ...} @ inputs: 
   let
     inherit (self) outputs;
     system = "x86_64-linux";
     hostname = "canix";
     user = "cabang";
+    nixOsVersion = "25.05";
   in
   {
+
     nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = { inherit hostname;  inherit user; };   
+
       modules = [
+        home-manager.nixosModules.home-manager 
         ./main.nix
 
-        ./modules/core.nix
-        ./modules/nushell/nushell.nix
+        ./modules/nushell/default.nix
         ./modules/yubikey.nix
         ./modules/socials.nix
         ./modules/nix-alien.nix

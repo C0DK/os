@@ -1,6 +1,6 @@
 {
   pkgs,
-  username,
+  user,
   ...
 }:
 {
@@ -49,7 +49,7 @@
     TTYVTDisallocate = true;
   };
 
-  home-manager.users.${username} = {
+  home-manager.users.${user} = {
     programs = {
 
       hyprlock = {
