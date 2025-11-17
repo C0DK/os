@@ -4,7 +4,6 @@
     python3
     python313
     virtualenv
-    pdm
     pipenv
     black
     ruff

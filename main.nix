@@ -9,11 +9,21 @@
 {
 
   home-manager.users.${user} = {
-    # The home.stateVersion option does not have a default and must be set
     home.stateVersion = nixOsVersion;
   };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Keep only last 10 generations
+  boot.loader.systemd-boot.configurationLimit = 10;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
+  # Use latest kernel (7.0.10+ has btmtk fix for MT7921 Bluetooth)
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
@@ -35,7 +45,7 @@
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     fira-code
     fira-code-symbols
@@ -49,11 +59,6 @@
     excludePackages = [ pkgs.xterm ];
   };
 
-  programs = {
-    # Install firefox.
-    firefox.enable = true;
-
-  };
   # To enable password input etc
   services.gnome.gnome-keyring.enable = true;
 
@@ -69,13 +74,23 @@
     # nix formatting tool
     pkgs.nixfmt-rfc-style
 
+    flameshot
+    # dependencies of flameshot in hyprland
+    xdg-desktop-portal
+    xdg-desktop-portal-hyprland
+    grim
+
     git
     spotify
     nordic
 
-    # fzf alternative
-    television
+    fd
     fzf
+
+    chromium
+
+    # llm cli
+    claude-code
 
     # A visual file explorer is nice for removable disks
     nautilus
@@ -96,6 +111,7 @@
     glances # htop alternative
 
     wl-clipboard # write to clipboard from shell
+
   ];
 
   # Enable loading new qmk to keyboard

@@ -21,7 +21,7 @@ tasks:
     desc: Updates system based on configs
     cmds:
       - task: format
-      - sudo nixos-rebuild switch
+      - sudo nixos-rebuild switch --flake /home/cwb/Documents/os#cwbfw
       - hyprctl reload
 
   updateFirmware:

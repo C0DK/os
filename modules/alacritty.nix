@@ -15,6 +15,21 @@
         decorations = "full";
         dynamic_title = true;
       };
+      hints.enabled = [
+        {
+          binding = {
+            key = "U";
+            mods = "Control|Shift";
+          };
+          command = "xdg-open";
+          post_processing = true;
+          persist = true;
+          mouse.mods = "Control";
+          mouse.enabled = true;
+          hyperlinks = true;
+          regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\u0000-\\u001F\\u007F-\\u009F<>\"\\\\s{-}\\\\^⟨⟩`\\\\\\\\]+";
+        }
+      ];
 
       colors = {
         primary = {

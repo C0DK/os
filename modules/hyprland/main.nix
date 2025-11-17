@@ -5,32 +5,48 @@
 }:
 {
   programs = {
-    hyprland.enable = true; 
+    hyprland.enable = true;
     waybar.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
     wofi
     hyprshot
-    #hyprcursor
+    hyprcursor
     hyprpaper
     brightnessctl
-    greetd.tuigreet
+    tuigreet
     # used for groupbind script
     socat
     libnotify
   ];
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+    config.common.default = [
+      "hyprland"
+      "gtk"
+    ];
+  };
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+  };
   # To launch hyprland on boot
   services.greetd =
     let
-      tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+      tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
     in
     {
       enable = true;
       settings = rec {
         initial_session = {
-          command = "${tuigreet} --time --remember --cmd ${pkgs.hyprland}/bin/Hyprland";
+          command = "${tuigreet} --time --remember --cmd ${pkgs.hyprland}/bin/start-hyprland";
           # TODO as variable
           user = "cwb";
         };
@@ -111,11 +127,17 @@
         {
           enable = true;
           settings = {
+
+            wallpaper = [
+              {
+                monitor = "";
+                path = builtins.toString wallpaper;
+                fit_mode = "cover";
+              }
+            ];
             ipc = "off";
             splash = true;
             preload = (builtins.toString wallpaper);
-
-            wallpaper = ",${builtins.toString wallpaper}";
           };
         }
       );

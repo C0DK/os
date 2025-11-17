@@ -8,3 +8,4 @@
 - https://github.com/cirius-nix/cirius-nix/tree/master
 - https://github.com/fufexan/dotfiles/tree/main
 - https://flake.parts/getting-started.html
+- https://nixos-and-flakes.thiscute.world/introduction/
