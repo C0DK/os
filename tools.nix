@@ -38,5 +38,8 @@
     wl-clipboard
 
     git-lfs
+
+    # Run GitHub Actions workflows locally in a container
+    act
   ];
 }
