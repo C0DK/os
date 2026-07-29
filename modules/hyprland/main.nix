@@ -47,8 +47,7 @@
       settings = rec {
         initial_session = {
           command = "${tuigreet} --time --remember --cmd ${pkgs.hyprland}/bin/start-hyprland";
-          # TODO as variable
-          user = "cwb";
+          user = user;
         };
         default_session = initial_session;
       };
@@ -121,8 +120,7 @@
     services = {
       hyprpaper = (
         let
-          # TODO: find easier way not dependend on username
-          wallpaper = /home/cwb/.config/wallpaper.png;
+          wallpaper = ./assets/wallpaper.png;
         in
         {
           enable = true;
@@ -141,10 +139,8 @@
           };
         }
       );
-      # TODO style mako
       mako = {
         enable = true;
-        #catppuccin.enable = true;
         settings = {
           actions = true;
           anchor = "top-right";
@@ -152,13 +148,6 @@
           border-size = 1;
           default-timeout = 10000;
           icons = true;
-          #background-color = "#303446";
-          #text-color = "#c6d0f5";
-          #border-color = "#eebebe";
-          #progress-color = "over #414559";
-
-          #[urgency=high]
-          #border-color=#ef9f76
           layer = "overlay";
           max-visible = 3;
           padding = "10";

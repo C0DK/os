@@ -27,9 +27,7 @@
           (extension "kagi-search-for-firefox" "search@kagi.com")
           # TODO: doesnt seem to be installed. + configure it in code to use catpuccin
           (extension "firefox-color" "me@lmorchard.com")
-          (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
           #(extension "ctrl-number-to-switch-tabs" "84601290-bec9-494a-b11c-1baa897a9683")
-          # TODO add bitwarden
         ];
       # To add additional extensions, find it on addons.mozilla.org, find
       # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)

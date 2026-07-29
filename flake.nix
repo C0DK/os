@@ -14,12 +14,6 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    # chorbar = {
-    #   type = "github";
-    #   owner = "c0dk";
-    #   repo = "chorbar";
-    #   ref = "feat/observability";
-    # };
   };
 
   outputs =
@@ -52,9 +46,9 @@
         };
 
         modules = [
-
           sops-nix.nixosModules.sops
           ({
+            nixpkgs.config.allowUnfree = true;
             nixpkgs.overlays = [
               inputs.nix-alien.overlays.default
               inputs.dagger.overlays.default
@@ -62,42 +56,9 @@
           })
           home-manager.nixosModules.home-manager
 
-          ./main.nix
-
-          ./modules/hardware-configuration.nix
-          ./modules/sops.nix
-          ./modules/postgres.nix
-          ./modules/configuration.nix
-          ./modules/identity.nix
-          ./modules/alacritty.nix
-          ./modules/ghostty.nix
-          ./modules/tmux.nix
-          ./modules/nushell/default.nix
-          ./modules/yubikey.nix
-          ./modules/socials.nix
-          ./modules/nix-alien.nix
-          ./modules/gpg.nix
-          ./modules/git/default.nix
-          ./modules/television.nix
-          ./modules/opencode.nix
-
-          ./modules/firefox.nix
-
-          ./modules/hyprland/main.nix
-
-          ./modules/bluetooth.nix
-          ./modules/audio.nix
-
-          ./modules/coding/core.nix
-          ./modules/coding/dotnet.nix
-          ./modules/coding/js.nix
-          ./modules/coding/python.nix
-          ./modules/coding/rust.nix
-          ./modules/coding/hugo.nix
-          ./modules/coding/go.nix
-          ./modules/coding/helix.nix
-
-          ./modules/tailscale.nix
+          ./system.nix
+          ./tools.nix
+          ./modules
         ];
       };
     };
