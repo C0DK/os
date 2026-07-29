@@ -216,7 +216,7 @@ def "g new" [msg: string] {
     let scope = ($parsed | get scope.0)
     let subject = ($parsed | get subject.0)
 
-    let slug = ($subject | str downcase | str replace --all --regex '[^a-z0-9]+' '-' | str replace --all --regex '^-+|-+$' '')
+    let slug = ($subject | str lowercase | str replace --all --regex '[^a-z0-9]+' '-' | str replace --all --regex '^-+|-+$' '')
     let branch = $"($type)/($slug)"
 
     # Capture dirty files before switching so we can show them clearly.
