@@ -7,7 +7,8 @@
     carapace
     starship
     fastfetch
-    nushellPlugins.polars
+    # polars is broken. renabled when works
+    #nushellPlugins.polars
   ];
 
   home-manager.users.${user}.programs = {

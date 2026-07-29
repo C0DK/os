@@ -1,5 +1,5 @@
-plugin add /run/current-system/sw/bin/nu_plugin_polars
-plugin use polars
+#plugin add /run/current-system/sw/bin/nu_plugin_polars
+#plugin use polars
 
 
 def pg [query?:string ...rest: string] {

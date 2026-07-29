@@ -52,7 +52,6 @@
             nixpkgs.config.allowUnfree = true;
             nixpkgs.overlays = [
               inputs.nix-alien.overlays.default
-              inputs.dagger.overlays.default
             ];
           }
           home-manager.nixosModules.home-manager

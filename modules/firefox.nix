@@ -27,8 +27,26 @@
     policies = {
       DisableFirefoxAccounts = true;
       DisableTelemetry = true;
-      SearchBar = "unified";
       DisableAccounts = true;
+      SearchBar = "unified";
+
+      SearchEngines = {
+        Add = [
+          {
+            Name = "Nixpkgs";
+            URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
+            Alias = "@np";
+            Method = "GET";
+          }
+          {
+            Name = "NixOS Options";
+            URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
+            Alias = "@no";
+            Method = "GET";
+          }
+        ];
+        Default = "Kagi";
+      };
       ExtensionSettings =
         with builtins;
         let
