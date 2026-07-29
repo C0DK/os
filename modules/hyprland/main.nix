@@ -47,7 +47,7 @@
       settings = rec {
         initial_session = {
           command = "${tuigreet} --time --remember --cmd ${pkgs.hyprland}/bin/start-hyprland";
-          user = user;
+          inherit user;
         };
         default_session = initial_session;
       };
@@ -118,7 +118,7 @@
         ".config/wofi" = cpy ./wofi;
       };
     services = {
-      hyprpaper = (
+      hyprpaper =
         let
           wallpaper = ./assets/wallpaper.png;
         in
@@ -135,10 +135,9 @@
             ];
             ipc = "off";
             splash = true;
-            preload = (builtins.toString wallpaper);
+            preload = builtins.toString wallpaper;
           };
-        }
-      );
+        };
       mako = {
         enable = true;
         settings = {

@@ -107,12 +107,14 @@
         theme = "catppuccin_macchiato";
 
         keys.normal = {
-          space."=" = ":format";
-          space.space = "file_picker";
-          space.L = [
-            ":reload-all"
-            ":lsp-restart"
-          ];
+          space = {
+            "=" = ":format";
+            space = "file_picker";
+            L = [
+              ":reload-all"
+              ":lsp-restart"
+            ];
+          };
         };
         editor = {
           # Enable cursorline highlighting

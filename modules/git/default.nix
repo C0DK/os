@@ -26,7 +26,7 @@
         insteadOf = "https://github.com/";
       };
       user = {
-        email = email;
+        inherit email;
         name = fullName;
         signingKey = "2E1DC0FF50920EDDDE1757D9881239F715822BB7";
       };

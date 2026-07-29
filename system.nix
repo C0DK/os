@@ -21,11 +21,6 @@
 
   time.timeZone = "Europe/Copenhagen";
 
-  services.xserver.xkb = {
-    layout = "dk";
-    variant = "winkeys";
-  };
-
   console.keyMap = "dk-latin1";
 
   i18n.extraLocaleSettings = {
@@ -46,13 +41,19 @@
     proggyfonts
     nerd-fonts.fira-code
   ];
+  services = {
+    xserver.xkb = {
+      layout = "dk";
+      variant = "winkeys";
+    };
 
-  services.xserver = {
-    excludePackages = [ pkgs.xterm ];
+    xserver = {
+      excludePackages = [ pkgs.xterm ];
+    };
+
+    gnome.gnome-keyring.enable = true;
+    gnome.core-apps.enable = false;
   };
-
-  services.gnome.gnome-keyring.enable = true;
-  services.gnome.core-apps.enable = false;
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
