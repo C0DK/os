@@ -133,6 +133,7 @@
                 fit_mode = "cover";
               }
             ];
+
             ipc = "off";
             splash = true;
             preload = builtins.toString wallpaper;

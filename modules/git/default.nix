@@ -14,6 +14,7 @@
 
   home-manager.users.${user}.programs.git = {
     enable = true;
+    lfs.enable = true;
 
     ignores = [
       "**/cwb.env"

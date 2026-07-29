@@ -12,16 +12,16 @@
         [source]
         command = "nmcli -t -f SSID,SIGNAL,SECURITY device wifi list 2>/dev/null | grep -v '^:' | sort -t: -k2 -rn"
         shell = "bash"
-        display = "{split:\::0} ({split:\::1}% {split:\::2})"
-        output = "{split:\::0}"
+        display = "{split:\\::0} ({split:\\::1}% {split:\\::2})"
+        output = "{split:\\::0}"
 
         [preview]
-        command = "nmcli -t -f SSID,BSSID,MODE,FREQ,SIGNAL,SECURITY,ACTIVE device wifi list 2>/dev/null | grep '^{split:\::0}:'"
+        command = "nmcli -t -f SSID,BSSID,MODE,FREQ,SIGNAL,SECURITY,ACTIVE device wifi list 2>/dev/null | grep '^{split:\\::0}:'"
         shell = "bash"
 
         [actions.connect]
         description = "Connect to the selected network"
-        command = "nmcli device wifi connect '{split:\::0}'"
+        command = "nmcli device wifi connect '{split:\\::0}'"
         mode = "execute"
       '';
     };

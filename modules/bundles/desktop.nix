@@ -1,6 +1,6 @@
 {
   imports = [
-    ../hyprland/main.nix
+    ../hyprland
     ../firefox.nix
     ../ghostty.nix
     ../alacritty.nix
