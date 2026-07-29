@@ -23,6 +23,9 @@ tasks:
       - task: format
       - sudo nixos-rebuild switch --flake .#cwbfw
       - hyprctl reload
+  update:
+    cmds:
+      - nix flake update    
 
   updateFirmware:
     desc: Updates framework laptop firmware

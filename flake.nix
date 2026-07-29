@@ -9,9 +9,6 @@
 
     nix-alien.url = "github:thiagokokada/nix-alien";
 
-    dagger.url = "github:dagger/nix";
-    dagger.inputs.nixpkgs.follows = "nixpkgs";
-
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 

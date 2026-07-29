@@ -8,6 +8,6 @@
     ../audio.nix
     ../bluetooth.nix
     ../nushell/default.nix
-    ../socials.nix
+    ../signal.nix
   ];
 }
