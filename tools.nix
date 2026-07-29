@@ -1,7 +1,12 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  repoPath,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     nixfmt
+    treefmt
 
     flameshot
     xdg-desktop-portal
@@ -41,5 +46,10 @@
 
     # Run GitHub Actions workflows locally in a container
     act
+
+    # Wrapper so `system sync` / `system upgrade` / etc. work from any cwd
+    (writeShellScriptBin "system" ''
+      exec ${go-task}/bin/task -t ${repoPath}/taskfile.yml "$@"
+    '')
   ];
 }

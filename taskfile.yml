@@ -38,7 +38,7 @@ tasks:
     aliases: [fmt]
     desc: Autoformats all nix files
     cmds:
-      - nixfmt .
+      - treefmt .
 
 
   setup:

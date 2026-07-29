@@ -32,6 +32,7 @@
       email = "c@cwb.dk";
       fullName = "Casper Weiss Bang";
       nixOsVersion = "25.11";
+      repoPath = "/home/${user}/Documents/os";
     in
     {
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
@@ -43,6 +44,7 @@
           inherit nixOsVersion;
           inherit fullName;
           inherit email;
+          inherit repoPath;
         };
 
         modules = [
