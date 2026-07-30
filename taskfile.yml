@@ -43,6 +43,11 @@ tasks:
     cmds:
       - treefmt .
 
+  ci:
+    desc: Runs the github actions
+    cmds:
+      - act
+
   setup:
     desc: Initalizes the machine based on this repo
     cmds:
