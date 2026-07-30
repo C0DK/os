@@ -295,3 +295,48 @@ open ~/.env | from toml | load-env;
 
 $env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
 
+
+def box-header [title: string, color: string] {
+    let w = ($title | str length) + 2
+    let bar = (0..<$w | each {|_| "─" } | str join)
+    print ""
+    print $"(ansi $color)╭($bar)╮(ansi reset)"
+    print $"(ansi $color)│ ($title) │(ansi reset)"
+    print $"(ansi $color)╰($bar)╯(ansi reset)"
+}
+
+def emoji-color [emoji: string] {
+    match $emoji {
+        "✅" => "green_bold",
+        "❌" => "red_bold",
+        "⭐" => "yellow",
+        "🐳" => "blue",
+        "🚀" => "purple_bold",
+        "⚙" => "magenta",
+        "☁" => "cyan",
+        _ => "white",
+    }
+}
+
+def "act pretty" [...args: string] {
+    mut scope = ""
+    for line in (^act ...$args | lines) {
+        let parsed = ($line | parse -r '^\[(?P<scope>[^\]]+)\]\s+(?P<emoji>\S*)\s*(?P<msg>.*)$')
+
+        if ($parsed | is-empty) {
+            # lines act prints without a [job/step] prefix (errors, summaries)
+            print $"(ansi grey)($line)(ansi reset)"
+            continue
+        }
+
+        let row = ($parsed | first)
+
+        if $row.scope != $scope {
+            $scope = $row.scope
+            box-header $scope "cyan_bold"
+        }
+
+        let color = (emoji-color $row.emoji)
+        print $"  (ansi $color)($row.emoji)(ansi reset) ($row.msg)"
+    }
+}

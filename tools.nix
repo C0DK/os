@@ -46,6 +46,7 @@
 
     # Run GitHub Actions workflows locally in a container
     act
+    # TODO: prettier output
 
     # Wrapper so `system sync` / `system upgrade` / etc. work from any cwd
     (writeShellScriptBin "system" ''
