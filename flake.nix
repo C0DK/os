@@ -2,79 +2,64 @@
   description = "cabang's personal NixOS setup";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nix-alien.url = "github:thiagokokada/nix-alien";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    self.lfs = true;
   };
 
-  outputs = { self, home-manager, nixpkgs, ...} @ inputs: 
-  let
-    inherit (self) outputs;
-    system = "x86_64-linux";
-    hostname = "canix";
-    user = "cabang";
-    nixOsVersion = "25.05";
-  in
-  {
-    modules = [
-        ./main.nix
+  outputs =
+    {
+      self,
+      home-manager,
+      nixpkgs,
+      nix-alien,
+      sops-nix,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      hostname = "cwbfw";
+      user = "cwb";
+      email = "c@cwb.dk";
+      fullName = "Casper Weiss Bang";
+      nixOsVersion = "25.11";
+      repoPath = "/home/${user}/Documents/os";
+    in
+    {
+      nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+          inherit hostname;
+          inherit user;
+          inherit nixOsVersion;
+          inherit fullName;
+          inherit email;
+          inherit repoPath;
+        };
 
-        ./modules/nushell/default.nix
-        ./modules/yubikey.nix
-        ./modules/socials.nix
-        ./modules/nix-alien.nix
-        ./modules/gpg.nix
-        ./modules/git/default.nix
+        modules = [
+          sops-nix.nixosModules.sops
+          {
+            nixpkgs.config.allowUnfree = true;
+            nixpkgs.overlays = [
+              inputs.nix-alien.overlays.default
+            ];
+          }
+          home-manager.nixosModules.home-manager
 
-        ./modules/firefox.nix
-
-        ./modules/hyprland/main.nix
-
-        ./modules/bluetooth.nix
-        ./modules/audio.nix
-
-        ./modules/coding/core.nix
-        ./modules/coding/dotnet.nix
-        ./modules/coding/js.nix
-        ./modules/coding/python.nix
-        ./modules/coding/rust.nix
-        ./modules/coding/hugo.nix
-      ];
-
-    nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = { inherit hostname;  inherit user; inherit nixOsVersion; };   
-
-      modules = [
-        home-manager.nixosModules.home-manager 
-        ./main.nix
-
-        ./modules/nushell/default.nix
-        ./modules/yubikey.nix
-        ./modules/socials.nix
-        ./modules/nix-alien.nix
-        ./modules/gpg.nix
-        ./modules/git/default.nix
-
-        ./modules/firefox.nix
-
-        ./modules/hyprland/main.nix
-
-        ./modules/bluetooth.nix
-        ./modules/audio.nix
-
-        ./modules/coding/core.nix
-        ./modules/coding/dotnet.nix
-        ./modules/coding/js.nix
-        ./modules/coding/python.nix
-        ./modules/coding/rust.nix
-        ./modules/coding/hugo.nix
-      ];
+          ./system.nix
+          ./tools.nix
+          ./modules
+        ];
+      };
     };
-  };
 }

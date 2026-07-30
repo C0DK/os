@@ -1,17 +1,25 @@
 { config, pkgs, ... }:
 {
-  environment.systemPackages =
-    with pkgs;
-    [
-      # Gihub CLI
-      gh
+  environment.systemPackages = with pkgs; [
+    # Gihub CLI
+    gh
 
-      bat
+    bat
 
-      jq
-      yq-go
+    jq
+    yq-go
 
-      pgcli
-    ];
+    bdt
+
+    pgcli
+
+    treefmt
+
+    lldb
+    # dotnet tool install --global dotnet-debugger-extensions
+
+    bandwhich
+
+  ];
 
 }

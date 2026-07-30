@@ -1,5 +1,23 @@
-{ config, pkgs, ... }:
 {
+  user,
+  ...
+}:
+{
+
+  home-manager.users.${user} = {
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
+        "x-scheme-handler/sgnl" = "signal.desktop";
+        "x-scheme-handler/signalcaptcha" = "signal.desktop";
+      };
+    };
+  };
   programs.firefox = {
     enable = true;
     preferences = {
@@ -9,8 +27,26 @@
     policies = {
       DisableFirefoxAccounts = true;
       DisableTelemetry = true;
-      SearchBar = "unified";
       DisableAccounts = true;
+      SearchBar = "unified";
+
+      SearchEngines = {
+        Add = [
+          {
+            Name = "Nixpkgs";
+            URLTemplate = "https://search.nixos.org/packages?query={searchTerms}";
+            Alias = "@np";
+            Method = "GET";
+          }
+          {
+            Name = "NixOS Options";
+            URLTemplate = "https://search.nixos.org/options?query={searchTerms}";
+            Alias = "@no";
+            Method = "GET";
+          }
+        ];
+        Default = "Kagi";
+      };
       ExtensionSettings =
         with builtins;
         let
@@ -27,9 +63,7 @@
           (extension "kagi-search-for-firefox" "search@kagi.com")
           # TODO: doesnt seem to be installed. + configure it in code to use catpuccin
           (extension "firefox-color" "me@lmorchard.com")
-          (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
           #(extension "ctrl-number-to-switch-tabs" "84601290-bec9-494a-b11c-1baa897a9683")
-          # TODO add bitwarden
         ];
       # To add additional extensions, find it on addons.mozilla.org, find
       # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)

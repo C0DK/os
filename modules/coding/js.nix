@@ -1,8 +1,12 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     nodejs
-    jetbrains.webstorm
+    pnpm
+    typescript-language-server
+    # html?
+    superhtml
+    htmltest
   ];
 
 }
