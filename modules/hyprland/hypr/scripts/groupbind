@@ -28,27 +28,27 @@ handle() {
         if [ "$(echo "$grouped_windows_in_active_workspace" | jq -s '. | length')" -gt 0 ] && [ "$(echo "$windows_in_active_workspace" | jq -s '. | length')" == "$(echo "$grouped_windows_in_active_workspace" | jq -s '. | length')" ]; then
             new_commands="group"
             if [ "$last_commands" != "$new_commands" ]; then
-                hyprctl keyword unbind SUPER,J
-                hyprctl keyword unbind SUPER,K
-                hyprctl keyword unbind SUPER SHIFT,J
-                hyprctl keyword unbind SUPER SHIFT,K
-                hyprctl keyword bind SUPER,J, changegroupactive, f
-                hyprctl keyword bind SUPER,K, changegroupactive, b
-                hyprctl keyword bind SUPER SHIFT,J, movegroupwindow, f
-                hyprctl keyword bind SUPER SHIFT,K, movegroupwindow, b
+                hyprctl eval 'hl.unbind("SUPER + J")'
+                hyprctl eval 'hl.unbind("SUPER + K")'
+                hyprctl eval 'hl.unbind("SUPER + SHIFT + J")'
+                hyprctl eval 'hl.unbind("SUPER + SHIFT + K")'
+                hyprctl eval 'hl.bind("SUPER + J", hl.dsp.group.next())'
+                hyprctl eval 'hl.bind("SUPER + K", hl.dsp.group.prev())'
+                hyprctl eval 'hl.bind("SUPER + SHIFT + J", hl.dsp.group.move_window({ forward = true }))'
+                hyprctl eval 'hl.bind("SUPER + SHIFT + K", hl.dsp.group.move_window({ forward = false }))'
                 last_commands=$new_commands
             fi
         else
             new_commands="layout"
             if [ "$last_commands" != "$new_commands" ]; then
-                hyprctl keyword unbind SUPER,J
-                hyprctl keyword unbind SUPER,K
-                hyprctl keyword unbind SUPER SHIFT,J
-                hyprctl keyword unbind SUPER SHIFT,K
-                hyprctl keyword bind SUPER,J,layoutmsg,cyclenext
-                hyprctl keyword bind SUPER,K,layoutmsg,cycleprev
-                hyprctl keyword bind SUPER SHIFT,J,layoutmsg,swapnext
-                hyprctl keyword bind SUPER SHIFT,K,layoutmsg,swapprev
+                hyprctl eval 'hl.unbind("SUPER + J")'
+                hyprctl eval 'hl.unbind("SUPER + K")'
+                hyprctl eval 'hl.unbind("SUPER + SHIFT + J")'
+                hyprctl eval 'hl.unbind("SUPER + SHIFT + K")'
+                hyprctl eval 'hl.bind("SUPER + J", hl.dsp.layout("cyclenext"))'
+                hyprctl eval 'hl.bind("SUPER + K", hl.dsp.layout("cycleprev"))'
+                hyprctl eval 'hl.bind("SUPER + SHIFT + J", hl.dsp.layout("swapnext"))'
+                hyprctl eval 'hl.bind("SUPER + SHIFT + K", hl.dsp.layout("swapprev"))'
                 last_commands=$new_commands
             fi
         fi
