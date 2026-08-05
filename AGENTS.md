@@ -60,7 +60,7 @@ Personal NixOS configuration managed as a **Nix flake**. Declaratively configure
 |--------|---------|
 | Build (no switch) | `nixos-rebuild build --flake .#cwbfw` |
 | Switch the live system | `sudo nixos-rebuild switch --flake .#cwbfw` |
-| Update lock file | `nix flake lock` or `nix flake update --all` |
+| Update lock file | `nix flake lock` or `nix flake update` |
 | Format all Nix files | `nixfmt .` |
 | Show flake outputs | `nix flake show` |
 | Check flake | `nix flake check` |
