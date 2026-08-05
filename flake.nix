@@ -12,6 +12,9 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-modules.url = "github:C0DK/nix-modules";
+    nix-modules.inputs.nixpkgs.follows = "nixpkgs";
+
     self.lfs = true;
   };
 
@@ -55,6 +58,20 @@
             ];
           }
           home-manager.nixosModules.home-manager
+
+          inputs.nix-modules.nixosModules.default
+
+          {
+            cwb-modules = {
+              inherit user;
+              git = {
+                name = fullName;
+                inherit email;
+                signingKey = "2E1DC0FF50920EDDDE1757D9881239F715822BB7";
+              };
+              nushell.setAsDefaultShell = true;
+            };
+          }
 
           ./system.nix
           ./tools.nix

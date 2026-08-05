@@ -77,6 +77,26 @@
         "type": "github"
       }
     },
+    "nix-modules": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785949734,
+        "narHash": "sha256-npZbfi/Ba2dLdYU40gn/R8GBSQJcGnCaPAms5cX3FBM=",
+        "owner": "C0DK",
+        "repo": "nix-modules",
+        "rev": "11607176683bfb590351ffb1c98171adeaae9b70",
+        "type": "github"
+      },
+      "original": {
+        "owner": "C0DK",
+        "repo": "nix-modules",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1784007870,
@@ -113,6 +133,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "nix-alien": "nix-alien",
+        "nix-modules": "nix-modules",
         "nixpkgs": "nixpkgs_2",
         "sops-nix": "sops-nix"
       }
