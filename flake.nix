@@ -61,6 +61,12 @@
 
           inputs.nix-modules.nixosModules.default
 
+          inputs.nix-modules.nixosModules.dev-core
+          inputs.nix-modules.nixosModules.dotnet
+          inputs.nix-modules.nixosModules.go
+          inputs.nix-modules.nixosModules.js
+          inputs.nix-modules.nixosModules.rust
+
           {
             cwb-modules = {
               inherit user;
