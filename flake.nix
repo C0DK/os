@@ -70,6 +70,7 @@
           {
             renix = {
               inherit user;
+              flakePath = repoPath;
               git = {
                 name = fullName;
                 inherit email;

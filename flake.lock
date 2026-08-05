@@ -116,11 +116,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785953714,
-        "narHash": "sha256-aIbEjsVubBiU06WKOAZwtZxIBEVpnWYIhsjse8P7pHI=",
+        "lastModified": 1785955537,
+        "narHash": "sha256-7ZUI9hfrZpJPSEde961cu0d9XzuyFlwxwOH55g+TAGI=",
         "owner": "C0DK",
         "repo": "renix",
-        "rev": "2ed27d6639c52b38f37a05c3c94819876b846cda",
+        "rev": "592c7b442a0787132f8175018e12be5425fb6330",
         "type": "github"
       },
       "original": {
