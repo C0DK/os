@@ -84,11 +84,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785949734,
-        "narHash": "sha256-npZbfi/Ba2dLdYU40gn/R8GBSQJcGnCaPAms5cX3FBM=",
+        "lastModified": 1785953295,
+        "narHash": "sha256-mFk0uLWtE4IKYwStM1pr621Xmchf8Zz9Z5GUbfnLEkk=",
         "owner": "C0DK",
         "repo": "nix-modules",
-        "rev": "11607176683bfb590351ffb1c98171adeaae9b70",
+        "rev": "7515e77814b095f6e3336cbc513f01efb20206a6",
         "type": "github"
       },
       "original": {
