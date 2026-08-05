@@ -77,26 +77,6 @@
         "type": "github"
       }
     },
-    "nix-modules": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1785953295,
-        "narHash": "sha256-mFk0uLWtE4IKYwStM1pr621Xmchf8Zz9Z5GUbfnLEkk=",
-        "owner": "C0DK",
-        "repo": "nix-modules",
-        "rev": "7515e77814b095f6e3336cbc513f01efb20206a6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "C0DK",
-        "repo": "nix-modules",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1784007870,
@@ -129,12 +109,32 @@
         "type": "github"
       }
     },
+    "renix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785953714,
+        "narHash": "sha256-aIbEjsVubBiU06WKOAZwtZxIBEVpnWYIhsjse8P7pHI=",
+        "owner": "C0DK",
+        "repo": "renix",
+        "rev": "2ed27d6639c52b38f37a05c3c94819876b846cda",
+        "type": "github"
+      },
+      "original": {
+        "owner": "C0DK",
+        "repo": "renix",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nix-alien": "nix-alien",
-        "nix-modules": "nix-modules",
         "nixpkgs": "nixpkgs_2",
+        "renix": "renix",
         "sops-nix": "sops-nix"
       }
     },

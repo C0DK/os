@@ -12,8 +12,8 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-modules.url = "github:C0DK/nix-modules";
-    nix-modules.inputs.nixpkgs.follows = "nixpkgs";
+    renix.url = "github:C0DK/renix";
+    renix.inputs.nixpkgs.follows = "nixpkgs";
 
     self.lfs = true;
   };
@@ -59,16 +59,16 @@
           }
           home-manager.nixosModules.home-manager
 
-          inputs.nix-modules.nixosModules.default
+          inputs.renix.nixosModules.default
 
-          inputs.nix-modules.nixosModules.dev-core
-          inputs.nix-modules.nixosModules.dotnet
-          inputs.nix-modules.nixosModules.go
-          inputs.nix-modules.nixosModules.js
-          inputs.nix-modules.nixosModules.rust
+          inputs.renix.nixosModules.dev-core
+          inputs.renix.nixosModules.dotnet
+          inputs.renix.nixosModules.go
+          inputs.renix.nixosModules.js
+          inputs.renix.nixosModules.rust
 
           {
-            cwb-modules = {
+            renix = {
               inherit user;
               git = {
                 name = fullName;
