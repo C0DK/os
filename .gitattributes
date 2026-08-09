@@ -1,1 +1,0 @@
-modules/hyprland/assets/*.png filter=lfs diff=lfs merge=lfs -text

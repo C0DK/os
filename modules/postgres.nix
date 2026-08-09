@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
-  config.services.postgresql = {
+  environment.systemPackages = with pkgs; [ pgcli ];
+
+  services.postgresql = {
     enable = true;
     ensureDatabases = [
       "cwb"

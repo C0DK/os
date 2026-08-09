@@ -1,11 +1,5 @@
 local programs = require("programs")
 
-hl.monitor({
-  output = "DP-13",
-  mode = "preferred",
-  position = "0x0",
-  scale = 1,
-})
 
 hl.monitor({
   output = "DP-11",
@@ -15,10 +9,10 @@ hl.monitor({
 })
 
 hl.monitor({
-  output = "DP-9",
+  output = "eDP-1",
   mode = "preferred",
-  position = "5120x0",
-  scale = 1,
+  position = "0x0",
+  scale = 1.07
 })
 
 hl.monitor({

@@ -37,7 +37,7 @@ Personal NixOS configuration managed as a **Nix flake**. Declaratively configure
 │   ├── coding/default.nix     # Wraps the per-language modules (dotnet, go, rust, ...)
 │   ├── editor/helix.nix       # Helix editor config (kept out of coding/ — an editor isn't a language)
 │   ├── television/default.nix # Wraps config/theme + per-cable modules under cables/
-│   ├── hyprland/              # Window manager module + waybar/wofi/config + assets/wallpaper.png (LFS-tracked)
+│   ├── hyprland/              # Window manager module + waybar/wofi/config + assets/wallpaper.png
 │   ├── nushell/               # default.nix + config.nu (nushell rc)
 │   └── *.nix                  # Single-purpose feature modules (firefox, audio, tailscale, ...)
 └── taskfile.yml           # Common tasks (sync, format, iso, setup)
@@ -52,7 +52,7 @@ Personal NixOS configuration managed as a **Nix flake**. Declaratively configure
 - **`tools.nix` is personal tooling.** Apps you would install on your machine but which don't need their own module (e.g. `gimp`, `nautilus`, `chromium`). If a tool needs config (settings, secrets, packages with non-trivial options), promote it to `modules/<feature>.nix`.
 - **`modules/configuration.nix`** holds `system.stateVersion` and a few base settings (bootloader, networkmanager, experimental-features). **Never change `stateVersion`** unless you understand the migration implications.
 - **Special args** (`hostname`, `user`, `email`, `fullName`, `nixOsVersion`, `inputs`) flow from `flake.nix` to every module via `specialArgs`. Use them — never hardcode `cwb` or `cwbfw` in modules.
-- **Binary assets** (e.g. `modules/hyprland/assets/wallpaper.png`) are tracked via **git-lfs**. The `.gitattributes` pattern `modules/hyprland/assets/*.png` routes new wallpapers through LFS automatically. `git-lfs` is installed system-wide via `tools.nix`. Use `git lfs install --local` on fresh clones (the global git config is read-only on this machine, so `git lfs install` without `--local` will fail).
+- **Binary assets** (e.g. `modules/hyprland/assets/wallpaper.png`) are tracked directly in git (no LFS).
 
 ## Build & Deploy
 
@@ -60,7 +60,7 @@ Personal NixOS configuration managed as a **Nix flake**. Declaratively configure
 |--------|---------|
 | Build (no switch) | `nixos-rebuild build --flake .#cwbfw` |
 | Switch the live system | `sudo nixos-rebuild switch --flake .#cwbfw` |
-| Update lock file | `nix flake lock` or `nix flake update --all` |
+| Update lock file | `nix flake lock` or `nix flake update` |
 | Format all Nix files | `nixfmt .` |
 | Show flake outputs | `nix flake show` |
 | Check flake | `nix flake check` |

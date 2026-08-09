@@ -15,7 +15,6 @@
 
     git
     spotify
-    nordic
 
     fd
     fzf
@@ -41,8 +40,6 @@
     glances
 
     wl-clipboard
-
-    git-lfs
 
     # Run GitHub Actions workflows locally in a container
     act

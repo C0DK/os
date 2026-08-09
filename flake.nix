@@ -12,7 +12,8 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    self.lfs = true;
+    renix.url = "github:C0DK/renix";
+    renix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -55,6 +56,27 @@
             ];
           }
           home-manager.nixosModules.home-manager
+
+          inputs.renix.nixosModules.default
+
+          inputs.renix.nixosModules.dev-core
+          inputs.renix.nixosModules.dotnet
+          inputs.renix.nixosModules.go
+          inputs.renix.nixosModules.js
+          inputs.renix.nixosModules.rust
+
+          {
+            renix = {
+              inherit user;
+              flakePath = repoPath;
+              git = {
+                name = fullName;
+                inherit email;
+                signingKey = "2E1DC0FF50920EDDDE1757D9881239F715822BB7";
+              };
+              nushell.setAsDefaultShell = true;
+            };
+          }
 
           ./system.nix
           ./tools.nix
