@@ -14,8 +14,6 @@
 
     renix.url = "github:C0DK/renix";
     renix.inputs.nixpkgs.follows = "nixpkgs";
-
-    self.lfs = true;
   };
 
   outputs =

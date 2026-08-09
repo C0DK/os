@@ -9,6 +9,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v14
-      - run: git config --global filter.lfs.smudge cat && git config --global filter.lfs.clean cat
       - run: nix run nixpkgs#statix -- check .
       - run: nix flake check --no-build
