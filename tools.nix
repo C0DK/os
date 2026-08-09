@@ -15,7 +15,6 @@
 
     git
     spotify
-    nordic
 
     fd
     fzf
